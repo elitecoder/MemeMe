@@ -66,14 +66,14 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
 		
 		setupTextAttributes(textField: topTextField)
 		setupTextAttributes(textField: bottomTextField)
+		
+		setupUI(forState: .ImageNotSelected)
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
 
 		super.viewWillAppear(animated)
 		subscribeToKeyboardNotifications()
-		
-		setupUI(forState: .ImageNotSelected)
 	}
 	
 	override func viewDidDisappear(_ animated: Bool) {
