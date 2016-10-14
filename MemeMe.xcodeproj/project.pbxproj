@@ -8,20 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		836896A31DA72BAD008F7C5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836896A21DA72BAD008F7C5E /* AppDelegate.swift */; };
-		836896A51DA72BAD008F7C5E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836896A41DA72BAD008F7C5E /* ViewController.swift */; };
+		836896A51DA72BAD008F7C5E /* MemeCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836896A41DA72BAD008F7C5E /* MemeCreationViewController.swift */; };
 		836896A81DA72BAD008F7C5E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 836896A61DA72BAD008F7C5E /* Main.storyboard */; };
 		836896AA1DA72BAD008F7C5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 836896A91DA72BAD008F7C5E /* Assets.xcassets */; };
 		836896AD1DA72BAD008F7C5E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 836896AB1DA72BAD008F7C5E /* LaunchScreen.storyboard */; };
+		83A70B2E1DB052C2005AE862 /* impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83A70B2D1DB052C2005AE862 /* impact.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8368969F1DA72BAD008F7C5E /* ImagePickerExperiment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImagePickerExperiment.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8368969F1DA72BAD008F7C5E /* MemeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		836896A21DA72BAD008F7C5E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		836896A41DA72BAD008F7C5E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		836896A41DA72BAD008F7C5E /* MemeCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeCreationViewController.swift; sourceTree = "<group>"; };
 		836896A71DA72BAD008F7C5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		836896A91DA72BAD008F7C5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		836896AC1DA72BAD008F7C5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		836896AE1DA72BAD008F7C5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83A70B2D1DB052C2005AE862 /* impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = impact.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,7 +40,7 @@
 		836896961DA72BAD008F7C5E = {
 			isa = PBXGroup;
 			children = (
-				836896A11DA72BAD008F7C5E /* ImagePickerExperiment */,
+				836896A11DA72BAD008F7C5E /* MemeMe */,
 				836896A01DA72BAD008F7C5E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -46,30 +48,32 @@
 		836896A01DA72BAD008F7C5E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8368969F1DA72BAD008F7C5E /* ImagePickerExperiment.app */,
+				8368969F1DA72BAD008F7C5E /* MemeMe.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		836896A11DA72BAD008F7C5E /* ImagePickerExperiment */ = {
+		836896A11DA72BAD008F7C5E /* MemeMe */ = {
 			isa = PBXGroup;
 			children = (
 				836896A21DA72BAD008F7C5E /* AppDelegate.swift */,
-				836896A41DA72BAD008F7C5E /* ViewController.swift */,
+				836896A41DA72BAD008F7C5E /* MemeCreationViewController.swift */,
 				836896A61DA72BAD008F7C5E /* Main.storyboard */,
 				836896A91DA72BAD008F7C5E /* Assets.xcassets */,
 				836896AB1DA72BAD008F7C5E /* LaunchScreen.storyboard */,
 				836896AE1DA72BAD008F7C5E /* Info.plist */,
+				83A70B2D1DB052C2005AE862 /* impact.ttf */,
 			);
+			name = MemeMe;
 			path = ImagePickerExperiment;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8368969E1DA72BAD008F7C5E /* ImagePickerExperiment */ = {
+		8368969E1DA72BAD008F7C5E /* MemeMe */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 836896B11DA72BAD008F7C5E /* Build configuration list for PBXNativeTarget "ImagePickerExperiment" */;
+			buildConfigurationList = 836896B11DA72BAD008F7C5E /* Build configuration list for PBXNativeTarget "MemeMe" */;
 			buildPhases = (
 				8368969B1DA72BAD008F7C5E /* Sources */,
 				8368969C1DA72BAD008F7C5E /* Frameworks */,
@@ -79,9 +83,9 @@
 			);
 			dependencies = (
 			);
-			name = ImagePickerExperiment;
+			name = MemeMe;
 			productName = ImagePickerExperiment;
-			productReference = 8368969F1DA72BAD008F7C5E /* ImagePickerExperiment.app */;
+			productReference = 8368969F1DA72BAD008F7C5E /* MemeMe.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -96,11 +100,12 @@
 				TargetAttributes = {
 					8368969E1DA72BAD008F7C5E = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = FC967L3QRG;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = 8368969A1DA72BAD008F7C5E /* Build configuration list for PBXProject "ImagePickerExperiment" */;
+			buildConfigurationList = 8368969A1DA72BAD008F7C5E /* Build configuration list for PBXProject "MemeMe" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -113,7 +118,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8368969E1DA72BAD008F7C5E /* ImagePickerExperiment */,
+				8368969E1DA72BAD008F7C5E /* MemeMe */,
 			);
 		};
 /* End PBXProject section */
@@ -123,6 +128,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83A70B2E1DB052C2005AE862 /* impact.ttf in Resources */,
 				836896AD1DA72BAD008F7C5E /* LaunchScreen.storyboard in Resources */,
 				836896AA1DA72BAD008F7C5E /* Assets.xcassets in Resources */,
 				836896A81DA72BAD008F7C5E /* Main.storyboard in Resources */,
@@ -136,7 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				836896A51DA72BAD008F7C5E /* ViewController.swift in Sources */,
+				836896A51DA72BAD008F7C5E /* MemeCreationViewController.swift in Sources */,
 				836896A31DA72BAD008F7C5E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,9 +266,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = FC967L3QRG;
 				INFOPLIST_FILE = ImagePickerExperiment/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.project.mukul.ImagePickerExperiment;
+				PRODUCT_BUNDLE_IDENTIFIER = com.project.mukul.MemeMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -272,9 +279,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = FC967L3QRG;
 				INFOPLIST_FILE = ImagePickerExperiment/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.project.mukul.ImagePickerExperiment;
+				PRODUCT_BUNDLE_IDENTIFIER = com.project.mukul.MemeMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -283,7 +291,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8368969A1DA72BAD008F7C5E /* Build configuration list for PBXProject "ImagePickerExperiment" */ = {
+		8368969A1DA72BAD008F7C5E /* Build configuration list for PBXProject "MemeMe" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				836896AF1DA72BAD008F7C5E /* Debug */,
@@ -292,13 +300,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		836896B11DA72BAD008F7C5E /* Build configuration list for PBXNativeTarget "ImagePickerExperiment" */ = {
+		836896B11DA72BAD008F7C5E /* Build configuration list for PBXNativeTarget "MemeMe" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				836896B21DA72BAD008F7C5E /* Debug */,
 				836896B31DA72BAD008F7C5E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
