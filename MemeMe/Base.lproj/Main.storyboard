@@ -21,7 +21,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8Q2-9m-5vT"/>
@@ -98,6 +98,7 @@
                             <constraint firstItem="6Jw-6l-05d" firstAttribute="trailing" secondItem="zhA-lF-QiV" secondAttribute="trailing" id="r0W-e2-vxz"/>
                             <constraint firstItem="44t-jR-AP8" firstAttribute="trailing" secondItem="8Q2-9m-5vT" secondAttribute="trailing" id="tp7-34-mRV"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="zhA-lF-QiV" secondAttribute="bottom" id="une-hh-gDD"/>
+                            <constraint firstItem="8Q2-9m-5vT" firstAttribute="bottom" secondItem="zhA-lF-QiV" secondAttribute="top" id="w7h-zW-kS4"/>
                             <constraint firstItem="6Jw-6l-05d" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="zfD-tW-JJ0"/>
                         </constraints>
                     </view>
