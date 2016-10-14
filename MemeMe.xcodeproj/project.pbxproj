@@ -277,7 +277,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = FC967L3QRG;
-				INFOPLIST_FILE = ImagePickerExperiment/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/MemeMe/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.project.mukul.MemeMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -292,7 +292,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = FC967L3QRG;
-				INFOPLIST_FILE = ImagePickerExperiment/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/MemeMe/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.project.mukul.MemeMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
