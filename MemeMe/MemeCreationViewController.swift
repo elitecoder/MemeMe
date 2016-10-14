@@ -9,19 +9,6 @@
 import UIKit
 import NotificationCenter
 
-struct Meme {
-	let topText: String
-	let bottomText: String
-	let imageViewImage: UIImage
-	let memedImage: UIImage
-	
-	init(topText: String, bottomText: String, imageViewImage: UIImage, memedImage: UIImage) {
-		self.topText = topText
-		self.bottomText = bottomText
-		self.imageViewImage = imageViewImage
-		self.memedImage = memedImage
-	}
-}
 
 enum MemeViewState {
 	case ImageSelected, ImageNotSelected
@@ -45,7 +32,7 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
 		NSStrokeColorAttributeName : UIColor.black,
 		NSForegroundColorAttributeName : UIColor.white,
 		NSFontAttributeName : UIFont(name: "Impact", size: 40)!,
-		NSStrokeWidthAttributeName : "3.0"
+		NSStrokeWidthAttributeName : "-3.5"
 	] as [String : Any]
 	
 	var memes = [Meme]()
@@ -53,14 +40,12 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
 	
 	// MARK: View Lifecycle
 	
+	override var prefersStatusBarHidden: Bool {
+		return true
+	}
+	
 	override func viewDidLoad() {
-
 		super.viewDidLoad()
-		
-		// Disable camera button if Source Type camera is not available, for example: Simulator
-		if (!UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)) {
-			cameraButton.isEnabled = false
-		}
 
 		setupFontPicker()
 		
@@ -71,14 +56,19 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
-
 		super.viewWillAppear(animated)
+		
+		// Disable camera button if Source Type camera is not available, for example: Simulator
+		if (!UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)) {
+			cameraButton.isEnabled = false
+		}
+		
 		subscribeToKeyboardNotifications()
 	}
 	
 	override func viewDidDisappear(_ animated: Bool) {
-		
 		super.viewDidDisappear(animated)
+		
 		unsubscribeFromKeyboardNotifications()
 	}
 	
@@ -133,8 +123,8 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
 	func keyboardWillShow(notification: NSNotification) {
 		
 		// If user started editing bottom text field, move the whole view up
-		if (bottomTextField.isFirstResponder) {
-			view.frame.origin.y -= getKeyboardHeight(notification: notification)
+		if (view.frame.origin.y == 0 && bottomTextField.isFirstResponder) {
+			view.frame.origin.y = getKeyboardHeight(notification: notification) * (-1)
 		}
 	}
 	
@@ -142,10 +132,10 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
 		
 		// If editing of bottom text field is complete, move the view back down
 		if (bottomTextField.isFirstResponder) {
-			view.frame.origin.y = 0
+			view.frame.origin.y = 0 // Reset to default position
 		}
 	}
-	
+
 	func getKeyboardHeight(notification: NSNotification) -> CGFloat {
 		let userInfo = notification.userInfo
 		let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
@@ -171,7 +161,7 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
 		// Save the meme object once ViewController's work has been completed
 		controller.completionWithItemsHandler = {
 			(activity, completed, returnedItems, error) in
-			if completed{
+			if completed {
 				self.saveMeme(image: memeImage)
 			}
 		}
@@ -210,7 +200,7 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
 	func generateMemedImage()->UIImage
 	{
 		// Hide toolbars so they don't show up in the Meme image
-		configureBarVisibility(isHidden: false)
+		configureBarVisibility(isHidden: true)
 		
 		// Render view to an image
 		UIGraphicsBeginImageContext(self.view.frame.size)
@@ -262,11 +252,8 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
 	// MARK: TextField Delegate Methods
 	
 	func textFieldDidBeginEditing(_ textField: UITextField) {
-		if (textField == topTextField && textField.text == "TOP") {
-			textField.text = ""
-		}
 		
-		if (textField == bottomTextField && textField.text == "BOTTOM") {
+		if textField.text == "TOP" || textField.text == "BOTTOM" {
 			textField.text = ""
 		}
 	}

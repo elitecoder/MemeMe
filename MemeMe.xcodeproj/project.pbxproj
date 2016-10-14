@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		833F1A6D1DB15B3B00C74787 /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833F1A6C1DB15B3B00C74787 /* Meme.swift */; };
 		83A70B391DB05F40005AE862 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A70B2F1DB05F40005AE862 /* AppDelegate.swift */; };
 		83A70B3A1DB05F40005AE862 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83A70B301DB05F40005AE862 /* Assets.xcassets */; };
 		83A70B3B1DB05F40005AE862 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83A70B321DB05F40005AE862 /* LaunchScreen.storyboard */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		833F1A6C1DB15B3B00C74787 /* Meme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Meme.swift; path = MemeMe/Meme.swift; sourceTree = SOURCE_ROOT; };
 		8368969F1DA72BAD008F7C5E /* MemeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83A70B2F1DB05F40005AE862 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = MemeMe/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		83A70B301DB05F40005AE862 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = MemeMe/Assets.xcassets; sourceTree = SOURCE_ROOT; };
@@ -67,6 +69,7 @@
 				83A70B361DB05F40005AE862 /* impact.ttf */,
 				83A70B371DB05F40005AE862 /* Info.plist */,
 				83A70B401DB07A7E005AE862 /* UIImagePickerController+Extension.swift */,
+				833F1A6C1DB15B3B00C74787 /* Meme.swift */,
 			);
 			name = MemeMe;
 			path = ImagePickerExperiment;
@@ -149,6 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83A70B3F1DB05F40005AE862 /* MemeCreationViewController.swift in Sources */,
+				833F1A6D1DB15B3B00C74787 /* Meme.swift in Sources */,
 				83A70B411DB07A7E005AE862 /* UIImagePickerController+Extension.swift in Sources */,
 				83A70B391DB05F40005AE862 /* AppDelegate.swift in Sources */,
 			);
