@@ -14,6 +14,7 @@
 		83A70B3D1DB05F40005AE862 /* impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83A70B361DB05F40005AE862 /* impact.ttf */; };
 		83A70B3E1DB05F40005AE862 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83A70B371DB05F40005AE862 /* Info.plist */; };
 		83A70B3F1DB05F40005AE862 /* MemeCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A70B381DB05F40005AE862 /* MemeCreationViewController.swift */; };
+		83A70B411DB07A7E005AE862 /* UIImagePickerController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A70B401DB07A7E005AE862 /* UIImagePickerController+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		83A70B361DB05F40005AE862 /* impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = impact.ttf; path = MemeMe/impact.ttf; sourceTree = SOURCE_ROOT; };
 		83A70B371DB05F40005AE862 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = MemeMe/Info.plist; sourceTree = SOURCE_ROOT; };
 		83A70B381DB05F40005AE862 /* MemeCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemeCreationViewController.swift; path = MemeMe/MemeCreationViewController.swift; sourceTree = SOURCE_ROOT; };
+		83A70B401DB07A7E005AE862 /* UIImagePickerController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImagePickerController+Extension.swift"; path = "MemeMe/UIImagePickerController+Extension.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				83A70B341DB05F40005AE862 /* Main.storyboard */,
 				83A70B361DB05F40005AE862 /* impact.ttf */,
 				83A70B371DB05F40005AE862 /* Info.plist */,
+				83A70B401DB07A7E005AE862 /* UIImagePickerController+Extension.swift */,
 			);
 			name = MemeMe;
 			path = ImagePickerExperiment;
@@ -146,6 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83A70B3F1DB05F40005AE862 /* MemeCreationViewController.swift in Sources */,
+				83A70B411DB07A7E005AE862 /* UIImagePickerController+Extension.swift in Sources */,
 				83A70B391DB05F40005AE862 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

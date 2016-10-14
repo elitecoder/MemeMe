@@ -57,8 +57,6 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
 
 		super.viewDidLoad()
 		
-		subscribeToKeyboardNotifications()
-		
 		// Disable camera button if Source Type camera is not available, for example: Simulator
 		if (!UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)) {
 			cameraButton.isEnabled = false
@@ -68,11 +66,19 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
 		
 		setupTextAttributes(textField: topTextField)
 		setupTextAttributes(textField: bottomTextField)
+	}
+	
+	override func viewWillAppear(_ animated: Bool) {
+
+		super.viewWillAppear(animated)
+		subscribeToKeyboardNotifications()
 		
 		setupUI(forState: .ImageNotSelected)
 	}
 	
 	override func viewDidDisappear(_ animated: Bool) {
+		
+		super.viewDidDisappear(animated)
 		unsubscribeFromKeyboardNotifications()
 	}
 	
@@ -161,9 +167,16 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
 
 		// Present the Activity View Controller
 		let controller = UIActivityViewController(activityItems: [memeImage], applicationActivities: nil)
-		present(controller, animated: true) { 
-			self.saveMeme(image: memeImage)
+
+		// Save the meme object once ViewController's work has been completed
+		controller.completionWithItemsHandler = {
+			(activity, completed, returnedItems, error) in
+			if completed{
+				self.saveMeme(image: memeImage)
+			}
 		}
+		
+		present(controller, animated: true, completion: nil)
 	}
 	
 	@IBAction func cancelMemeCreation(_ sender: AnyObject) {
@@ -197,8 +210,7 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
 	func generateMemedImage()->UIImage
 	{
 		// Hide toolbars so they don't show up in the Meme image
-		topToolBar.alpha = 0.0
-		bottomToolBar.alpha = 0.0
+		configureBarVisibility(isHidden: false)
 		
 		// Render view to an image
 		UIGraphicsBeginImageContext(self.view.frame.size)
@@ -210,10 +222,14 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
 		UIGraphicsEndImageContext()
 		
 		// Display toolbars again
-		topToolBar.alpha = 1.0
-		bottomToolBar.alpha = 1.0
+		configureBarVisibility(isHidden: false)
 		
 		return image
+	}
+	
+	func configureBarVisibility(isHidden: Bool) {
+		topToolBar.isHidden = isHidden
+		bottomToolBar.isHidden = isHidden
 	}
 	
 	// MARK: ImagePicker Delegate Methods
