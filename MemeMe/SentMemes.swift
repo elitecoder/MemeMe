@@ -27,8 +27,8 @@ class SentMemes {
 		var memesArray = [Data]()
 		for meme in memes {
 			
-			let dataExample: Data = NSKeyedArchiver.archivedData(withRootObject: meme.propertyListRepresentation())
-			memesArray.append(dataExample)
+			let memeData: Data = NSKeyedArchiver.archivedData(withRootObject: meme.propertyListRepresentation())
+			memesArray.append(memeData)
 		}
 		
 		UserDefaults.standard.set(memesArray, forKey: userDefaultsKey)

@@ -15,7 +15,7 @@ class SentMemesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(SentMemesTableViewController.showMemeCreationView))
+		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(showMemeCreationView))
     }
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -25,13 +25,13 @@ class SentMemesTableViewController: UITableViewController {
 			showMemeCreationView()
 		}
 		
-		tableView.allowsMultipleSelectionDuringEditing = false;
+		tableView.allowsMultipleSelectionDuringEditing = false
 		
 		tableView.reloadData()
 	}
 	
 	func showMemeCreationView() {
-		let controller = self.storyboard?.instantiateViewController(withIdentifier: "MemeCreationViewController") as! MemeCreationViewController
+		let controller = storyboard?.instantiateViewController(withIdentifier: "MemeCreationViewController") as! MemeCreationViewController
 		present(controller, animated: true, completion: nil)
 	}
 	
@@ -58,10 +58,10 @@ class SentMemesTableViewController: UITableViewController {
 	// MARK: UITableViewDelegate
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		let controller = self.storyboard?.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
-		controller.meme = SentMemes.sharedInstance.memes[indexPath.row]
+		let controller = storyboard?.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
+		controller.memeIndex = indexPath.row
 		
-		self.navigationController?.pushViewController(controller, animated: true)
+		navigationController?.pushViewController(controller, animated: true)
 	}
 	
 	override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {

@@ -19,7 +19,7 @@ class SentMemesCollectionViewController: UICollectionViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(SentMemesCollectionViewController.showMemeCreationView))
+		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(showMemeCreationView))
 		
 		let space: CGFloat = 1.5
 		let dimension = (view.frame.size.width - (2 * space)) / 3.0
@@ -40,7 +40,7 @@ class SentMemesCollectionViewController: UICollectionViewController {
 	}
 	
 	func showMemeCreationView() {
-		let controller = self.storyboard?.instantiateViewController(withIdentifier: "MemeCreationViewController") as! MemeCreationViewController
+		let controller = storyboard?.instantiateViewController(withIdentifier: "MemeCreationViewController") as! MemeCreationViewController
 		present(controller, animated: true, completion: nil)
 	}
 
@@ -61,9 +61,9 @@ class SentMemesCollectionViewController: UICollectionViewController {
 	// MARK: UICollectionViewDelegate
 	
 	override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		let controller = self.storyboard?.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
-		controller.meme = SentMemes.sharedInstance.memes[indexPath.row]
+		let controller = storyboard?.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
+		controller.memeIndex = indexPath.row
 		
-		self.navigationController?.pushViewController(controller, animated: true)
+		navigationController?.pushViewController(controller, animated: true)
 	}
 }

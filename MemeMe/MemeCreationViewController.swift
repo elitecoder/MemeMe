@@ -35,7 +35,7 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
 		NSStrokeWidthAttributeName : "-3.5"
 	] as [String : Any]
 	
-	var meme: Meme? = nil
+	var memeIndex: Int = -1
 	var fontPickerData: [String] = [String]()
 	
 	// MARK: View Lifecycle
@@ -52,7 +52,8 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
 		setupTextAttributes(textField: topTextField)
 		setupTextAttributes(textField: bottomTextField)
 		
-		if let meme = self.meme { // Load existing meme into view
+		if memeIndex != -1 { // Load existing meme into view
+			let meme = SentMemes.sharedInstance.memes[memeIndex]
 			setupImageView(image: meme.imageViewImage)
 			topTextField.text = meme.topText
 			bottomTextField.text = meme.bottomText
@@ -124,8 +125,8 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
 	// MARK: Notification Center Methods
 	
 	func subscribeToKeyboardNotifications() {
-		NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 	}
 	
 	func unsubscribeFromKeyboardNotifications() {
@@ -201,8 +202,14 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
 		// At this point, our text fields and imageview are initialized and unwrapping the images and text is safe.
 		let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, imageViewImage: imagePickerView.image!, memedImage: image)
 		
-		// Add this newly created Meme to SentMemes Singleton
-		SentMemes.sharedInstance.memes.append(meme)
+		if memeIndex != -1 {
+			// Update the edited Meme in SentMemes Singleton
+			SentMemes.sharedInstance.memes[memeIndex] = meme
+		}
+		else {
+			// Add this newly created Meme to SentMemes Singleton
+			SentMemes.sharedInstance.memes.append(meme)
+		}
 	}
 
 	func displayImagePicker(sourceType:UIImagePickerControllerSourceType) {
@@ -218,8 +225,8 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
 		configureBarVisibility(isHidden: true)
 		
 		// Render view to an image
-		UIGraphicsBeginImageContext(self.view.frame.size)
-		view.drawHierarchy(in: self.view.frame,
+		UIGraphicsBeginImageContext(view.frame.size)
+		view.drawHierarchy(in: view.frame,
 		                   afterScreenUpdates: true)
 		
 		let image = UIGraphicsGetImageFromCurrentImageContext()!
