@@ -9,7 +9,6 @@
 import UIKit
 import NotificationCenter
 
-
 enum MemeViewState {
 	case ImageSelected, ImageNotSelected
 }
@@ -27,6 +26,7 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
 	@IBOutlet weak var shareButton: UIBarButtonItem!
 	@IBOutlet weak var fontPickerView: UIPickerView!
 	@IBOutlet weak var changeFontButton: UIBarButtonItem!
+	@IBOutlet weak var cancelButton: UIBarButtonItem!
 	
 	var memeTextAttributes = [
 		NSStrokeColorAttributeName : UIColor.black,
@@ -35,7 +35,7 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
 		NSStrokeWidthAttributeName : "-3.5"
 	] as [String : Any]
 	
-	var memes = [Meme]()
+	var meme: Meme? = nil
 	var fontPickerData: [String] = [String]()
 	
 	// MARK: View Lifecycle
@@ -52,7 +52,16 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
 		setupTextAttributes(textField: topTextField)
 		setupTextAttributes(textField: bottomTextField)
 		
-		setupUI(forState: .ImageNotSelected)
+		if let meme = self.meme { // Load existing meme into view
+			setupImageView(image: meme.imageViewImage)
+			topTextField.text = meme.topText
+			bottomTextField.text = meme.bottomText
+			
+			setupUI(forState: .ImageSelected)
+		}
+		else {
+			setupUI(forState: .ImageNotSelected)
+		}
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -63,6 +72,10 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
 			cameraButton.isEnabled = false
 		}
 		
+		// If user has never created a meme before, force user to create their first meme, before allowing them to leave
+		// the Meme Creation view.
+		cancelButton.isEnabled = !(SentMemes.sharedInstance.memes.count == 0)
+		
 		subscribeToKeyboardNotifications()
 	}
 	
@@ -71,6 +84,8 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
 		
 		unsubscribeFromKeyboardNotifications()
 	}
+	
+	// MARK: UI Setup
 	
 	func setupFontPicker() {
 		fontPickerView.dataSource = self
@@ -89,25 +104,23 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
 		fontPickerView.isHidden = true
 		
 		switch forState {
-		case .ImageSelected:
-			imagePickerView.isHidden = false
-			topTextField.isHidden = false
-			bottomTextField.isHidden = false
-			shareButton.isEnabled = true
-			changeFontButton.isEnabled = true
-		case .ImageNotSelected:
-			imagePickerView.isHidden = true
-			topTextField.isHidden = true
-			bottomTextField.isHidden = true
-			shareButton.isEnabled = false
-			changeFontButton.isEnabled = false
-			
-			// Reset content
-			topTextField.text = "TOP"
-			bottomTextField.text = "BOTTOM"
+			case .ImageSelected:
+				shareButton.isEnabled = true
+			case .ImageNotSelected:
+				imagePickerView.image = nil
+				shareButton.isEnabled = false
+				
+				// Reset content
+				topTextField.text = "TOP"
+				bottomTextField.text = "BOTTOM"
 		}
 	}
 	
+	func setupImageView(image: UIImage) {
+		imagePickerView.contentMode = .scaleAspectFit
+		imagePickerView.image = image
+	}
+		
 	// MARK: Notification Center Methods
 	
 	func subscribeToKeyboardNotifications() {
@@ -163,6 +176,7 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
 			(activity, completed, returnedItems, error) in
 			if completed {
 				self.saveMeme(image: memeImage)
+				self.dismiss(animated: true, completion: nil)
 			}
 		}
 		
@@ -171,11 +185,12 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
 	
 	@IBAction func cancelMemeCreation(_ sender: AnyObject) {
 		setupUI(forState: .ImageNotSelected)
+		dismiss(animated: true, completion: nil)
 	}
 	
 	@IBAction func changeFont(_ sender: AnyObject) {
 
-		// Show Font Picker if not displayed currently.
+		// Show Font Picker if not visible already.
 		// If its already visible, hide it.
 		let isHidden = fontPickerView.isHidden
 		fontPickerView.isHidden = !isHidden
@@ -185,11 +200,11 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
 		
 		// At this point, our text fields and imageview are initialized and unwrapping the images and text is safe.
 		let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, imageViewImage: imagePickerView.image!, memedImage: image)
-		memes.append(meme)
 		
-		// TODO: Need to find a way to store meme data to disk using NSArchiver of NSUserDefaults
+		// Add this newly created Meme to SentMemes Singleton
+		SentMemes.sharedInstance.memes.append(meme)
 	}
-	
+
 	func displayImagePicker(sourceType:UIImagePickerControllerSourceType) {
 		let imagePicker = UIImagePickerController()
 		imagePicker.delegate = self
@@ -228,8 +243,7 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
 		
 		var state = MemeViewState.ImageSelected
 		if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-			imagePickerView.contentMode = .scaleAspectFit
-			imagePickerView.image = image
+			setupImageView(image: image)
 		} else{
 			
 			// Setup UI for the situation where we don't have a selected image

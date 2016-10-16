@@ -11,6 +11,7 @@ import UIKit
 extension UIImagePickerController {
 
 	open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+		// Make sure UIImagePickerController supports both Landscape and Portrait mode
 		return [UIInterfaceOrientationMask.landscape, UIInterfaceOrientationMask.portrait]
 	}
 }
